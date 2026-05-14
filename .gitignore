@@ -1,0 +1,19 @@
+# Secrets & local env
+.env
+.env.local
+.env.*.local
+
+# Next.js (web/)
+web/node_modules/
+web/.next/
+web/out/
+web/.vercel/
+web/*.tsbuildinfo
+
+# Foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+
+# OS
+.DS_Store
