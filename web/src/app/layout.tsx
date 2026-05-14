@@ -16,10 +16,12 @@ const shareTech = Share_Tech_Mono({
 });
 
 const baseAppId =
-  process.env.NEXT_PUBLIC_BASE_APP_ID?.trim() || "neon-sweep-base-app";
+  process.env.NEXT_PUBLIC_BASE_APP_ID?.trim() ||
+  "6a057fdbacef3c7a49b1600e";
 
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL?.trim() || "http://localhost:3000";
+  process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
+  "https://minesweeper-eight-delta.vercel.app";
 
 export const metadata: Metadata = {
   title: "NeonSweep — Minesweeper on Base",
