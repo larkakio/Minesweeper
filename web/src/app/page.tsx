@@ -25,8 +25,9 @@ export default function Home() {
       </main>
 
       <footer className="border-t border-violet-500/20 px-4 py-3 text-center font-mono text-[10px] text-zinc-500">
-        Standard web app for Base · Swipe field controls · Builder Code via ox
-        ERC-8021 suffix on check-in txs
+        Standard web app for Base · Swipe field controls · wagmi{" "}
+        <code className="text-zinc-400">dataSuffix</code> + ox ERC-8021 (Builder
+        Codes)
       </footer>
     </div>
   );

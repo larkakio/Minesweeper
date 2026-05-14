@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useState } from "react";
 import { base } from "viem/chains";
 import {
   useConnection,
@@ -9,7 +9,6 @@ import {
   useWriteContract,
 } from "wagmi";
 import { checkInAbi } from "@/lib/check-in-abi";
-import { getBuilderDataSuffix } from "@/lib/builder-data-suffix";
 
 const ZERO = "0x0000000000000000000000000000000000000000" as const;
 
@@ -26,8 +25,6 @@ export function CheckInPanel() {
   const { switchChainAsync, isPending: isSwitching } = useSwitchChain();
   const { writeContractAsync, isPending: isWriting } = useWriteContract();
   const [msg, setMsg] = useState<string | null>(null);
-
-  const dataSuffix = useMemo(() => getBuilderDataSuffix(), []);
 
   const { data: streakOnChain } = useReadContract({
     address: contract,
@@ -55,7 +52,6 @@ export function CheckInPanel() {
         abi: checkInAbi,
         functionName: "checkIn",
         chainId: baseId,
-        dataSuffix,
       });
       setMsg("Check-in confirmed on-chain.");
     } catch (e) {
@@ -66,7 +62,6 @@ export function CheckInPanel() {
     address,
     chainId,
     contract,
-    dataSuffix,
     switchChainAsync,
     writeContractAsync,
   ]);
@@ -100,9 +95,8 @@ export function CheckInPanel() {
       </div>
       <p className="mt-1 text-xs text-zinc-400">
         One check-in per calendar day on Base. No ETH is sent — you only pay
-        L2 gas. Transactions include your Builder Code suffix when{" "}
-        <code className="text-cyan-300/90">NEXT_PUBLIC_BUILDER_CODE</code> is
-        set.
+        L2 gas. Builder Code attribution is appended via wagmi{" "}
+        <code className="text-cyan-300/90">dataSuffix</code> (see Base docs).
       </p>
       <button
         type="button"
